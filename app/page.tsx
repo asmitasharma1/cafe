@@ -54,9 +54,9 @@ export default function CafeCucinaLanding() {
           {/* Info Section */}
           <div className="py-12 px-6" style={{ backgroundColor: "#ebb16d" }}>
             <div className="max-w-6xl mx-auto">
-              <div className="grid md:grid-cols-3 gap-8 text-white">
+              <div className="grid md:grid-cols-3 gap-8 text-white items-center">
                 {/* Address */}
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-4 justify-center">
                   <MapPin className="w-6 h-6 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-semibold mb-2">ADDRESS</h3>
@@ -65,17 +65,21 @@ export default function CafeCucinaLanding() {
                   </div>
                 </div>
 
-                {/* Opening Hours */}
-                <div className="flex items-start gap-4">
-                  <Clock className="w-6 h-6 mt-1 flex-shrink-0" />
+                {/* Opening Hours with Left and Right Dividers */}
+                <div className="flex items-start gap-4 justify-center relative">
+                  <div className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 border-l-2 border-white h-16"></div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">OPENING HOURS</h3>
-                    <p className="text-lg">Sun-Sat Served 7 am to 9 pm</p>
+                    <Clock className="w-6 h-6 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-xl font-semibold mb-2">OPENING HOURS</h3>
+                      <p className="text-lg">Sun-Sat Served 7 am to 9 pm</p>
+                    </div>
                   </div>
+                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 border-l-2 border-white h-16"></div>
                 </div>
 
                 {/* Contact */}
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-4 justify-center">
                   <Phone className="w-6 h-6 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-semibold mb-2">CONTACT US</h3>
@@ -87,40 +91,34 @@ export default function CafeCucinaLanding() {
           </div>
 
           {/* Handcrafted Curations Section */}
-          <div className="py-16 px-6 bg-white relative">
-            <div className="max-w-5xl mx-auto text-center relative">
-              <h2
-                className="text-4xl font-bold mb-4"
-                style={{ color: "#67322C" }}
-              >
+          <div className="py-16 px-6 bg-white">
+            <div className="max-w-5xl mx-auto text-center">
+              <h2 className="text-4xl font-bold mb-4" style={{ color: "#67322C" }}>
                 Handcrafted Curations
               </h2>
-              <p
-                className="text-lg font-medium mb-10"
-                style={{ color: "#67322C" }}
-              >
-                Each dish and drink is thoughtfully crafted to elevate your
-                dining experience, blending bold flavors with the finest
-                ingredients.
+              <p className="text-lg font-medium mb-10" style={{ color: "#67322C" }}>
+                Each dish and drink is thoughtfully crafted to elevate your dining
+                experience, blending bold flavors with the finest ingredients.
               </p>
 
               {/* Image Wrapper */}
-              <div className="relative flex justify-center items-center">
-                {/* Background Image (3rd Image) */}
-                <div className="absolute -z-10 opacity-60 blur-md">
+              <div className="relative flex flex-col justify-center items-center min-h-[400px]">
+                {/* Background Image */}
+                <div className="absolute inset-0 rounded-2xl overflow-hidden">
                   <Image
-                    src="/cafebg.jpg"
+                    src="/cafecoffee.png"
                     alt="Background Curated Item"
-                    width={500}
-                    height={350}
-                    className="object-cover rounded-2xl"
+                    fill
+                    className="object-cover"
+                    priority
                   />
+                  {/* Brown overlay */}
+                  <div className="absolute inset-0 bg-amber-900/20"></div>
                 </div>
 
                 {/* Foreground Images */}
-                <div className="flex flex-col md:flex-row gap-6 relative z-10">
-                  {/* Image 1 */}
-                  <div className="rounded-2xl overflow-hidden shadow-lg">
+                <div className="flex flex-col md:flex-row gap-28 relative z-10">
+                  <div className="rounded-1xl overflow-hidden shadow-lg">
                     <Image
                       src="/cafetea.png"
                       alt="Curated Item 1"
@@ -129,9 +127,7 @@ export default function CafeCucinaLanding() {
                       className="object-cover"
                     />
                   </div>
-
-                  {/* Image 2 */}
-                  <div className="rounded-2xl overflow-hidden shadow-lg">
+                  <div className="rounded-1xl overflow-hidden shadow-lg">
                     <Image
                       src="/cafefood.png"
                       alt="Curated Item 2"
@@ -141,29 +137,62 @@ export default function CafeCucinaLanding() {
                     />
                   </div>
                 </div>
-              </div>
 
-              {/* Order Now Button */}
-              <div className="mt-10">
-                <Button
-                  size="lg"
-                  className="px-10 py-5 text-xl font-medium rounded-full"
-                  style={{ backgroundColor: "#FBAF3D", color: "white" }}
-                >
-                  Order Now
-                </Button>
+                {/* Order Now Button */}
+                <div className="relative z-10 mt-10 flex justify-center mb-1">
+                  <Button
+                    size="lg"
+                    className="px-10 py-2 text-xl font-medium"
+                    style={{ backgroundColor: "#c89343", color: "white" }}
+                  >
+                    Order Now
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
 
-
-
+          {/* About Us Section */}
+          <div className="py-16 px-6 bg-white">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-4xl font-bold mb-6" style={{ color: "#c89343" }}>
+                Our Story and Philosophy
+              </h2>
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="text-lg text-gray-600">
+                  <p>
+                    Café Cucina was born from a love for the warmth and vibrancy of
+                    the Italian kitchen where "cucina" means more than just a place
+                    to cook; it’s the heart of connection, creativity, and community.
+                  </p>
+                  <p className="mt-4">
+                    Inspired by the spirit of Italian culinary traditions, we
+                    envisioned a space where the inviting aroma of freshly brewed
+                    coffee meets the soulful essence of a bustling kitchen.
+                  </p>
+                </div>
+                <div className="w-full md:w-1/2">
+                  <img
+                    src="cafecucina.png"
+                    alt="Café Interior"
+                    className="w-full h-auto rounded-lg shadow-md"
+                  />
+                </div>
+              </div>
+              <div className="mt-8 text-center">
+                <Button
+                  size="lg"
+                  className="px-10 py-2 text-xl font-medium"
+                  style={{ backgroundColor: "#c89343", color: "white" }}
+                >
+                  Learn More
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
       <Footer />
-
     </div>
-
   );
-
 }
