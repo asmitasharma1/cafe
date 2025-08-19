@@ -1,4 +1,5 @@
 import { Instagram, Facebook, Phone } from "lucide-react"
+import Link from "next/link"
 
 export default function Footer() {
   return (
@@ -16,9 +17,21 @@ export default function Footer() {
           <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4">CAFE</h3>
             <ul className="space-y-2">
-              <li>About Us</li>
-              <li>Our Menu</li>
-              <li>Contact Us</li>
+              <li>
+                <Link href="/about" className="hover:underline cursor-pointer">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/menu" className="hover:underline cursor-pointer">
+                  Our Menu
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:underline cursor-pointer">
+                  Contact Us
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -26,23 +39,47 @@ export default function Footer() {
           <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4">QUICK LINKS</h3>
             <ul className="space-y-2">
-              <li>Gallery</li>
-              <li>Our Menu</li>
+              <li>
+                <Link href="/gallery" className="hover:underline cursor-pointer">
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link href="/menu" className="hover:underline cursor-pointer">
+                  Our Menu
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Socials Column */}
           <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4">SOCIALS</h3>
-            <ul className="space-y-2 flex flex-col items-center md:items-start">
+            <ul className="space-y-4 flex flex-col items-center md:items-start">
               <li>
-                <Instagram className="w-6 h-6" />
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline cursor-pointer flex items-center gap-2"
+                >
+                  <Instagram className="w-6 h-6" /> Instagram
+                </a>
               </li>
               <li>
-                <Facebook className="w-6 h-6" />
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline cursor-pointer flex items-center gap-2"
+                >
+                  <Facebook className="w-6 h-6" /> Facebook
+                </a>
               </li>
               <li>
-                <Phone className="w-6 h-6" />
+                <a href="tel:+977123456789" className="hover:underline cursor-pointer flex items-center gap-2">
+                  <Phone className="w-6 h-6" /> +977 123456789
+                </a>
               </li>
             </ul>
           </div>

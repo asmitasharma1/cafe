@@ -4,6 +4,7 @@ import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import Image from "next/image"
 import { Lato } from "next/font/google"
+import Link from "next/link"
 
 const lato = Lato({
   subsets: ["latin"],
@@ -185,13 +186,15 @@ export default function CafeCucinaLanding() {
                     Inspired by the spirit of Italian culinary traditions, we envisioned a space where the inviting
                     aroma of freshly brewed coffee meets the soulful essence of a bustling kitchen.
                   </p>
-                  <Button
-                    size="lg"
-                    className="px-6 md:px-8 py-3 text-base md:text-lg font-medium shadow-md"
-                    style={{ backgroundColor: "#f5a623", color: "white" }}
-                  >
-                    Learn More
-                  </Button>
+                  <Link href="/about">
+                    <Button
+                      size="lg"
+                      className="px-6 md:px-8 py-3 text-base md:text-lg font-medium shadow-md transition-all duration-300 cursor-pointer  hover:bg-[#d98c1a] hover:scale-105"
+                      style={{ backgroundColor: "#f5a623", color: "white" }}
+                    >
+                      Learn More
+                    </Button>
+                  </Link>
                 </div>
 
                 {/* Right Image */}
@@ -210,7 +213,7 @@ export default function CafeCucinaLanding() {
           <div
             className="relative py-16 md:py-24 min-h-[500px] md:min-h-[600px] bg-cover bg-center"
             style={{
-              backgroundImage: "url('/cafebook.png')",
+              backgroundImage: "url('/interior.webp')",
             }}
           >
             <div className="absolute inset-0 bg-black/20"></div>
