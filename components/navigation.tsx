@@ -27,7 +27,7 @@ export default function Navigation() {
             href="/"
             className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
           >
-            Home Page
+            Home
           </Link>
           <Link
             href="/about"
