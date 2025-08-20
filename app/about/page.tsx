@@ -86,7 +86,7 @@ export default function AboutPage() {
               <div className="relative">
                 {/* Main big image */}
                 <div className="w-full h-[400px] relative rounded-1xl overflow-hidden shadow-lg">
-                  <img src="location.webp" alt="Cafe Outside" className="w-full h-full object-cover" />
+                  <img src="interior.webp" alt="Cafe Outside" className="w-full h-full object-cover" />
                 </div>
 
                 {/* Overlapping small image */}
