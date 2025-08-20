@@ -22,7 +22,7 @@ export default function Navigation() {
         </div>
 
         {/* Desktop Navigation Menu */}
-        <div className="hidden lg:flex items-center space-x-8 xl:space-x-12">
+        <div className="hidden lg:flex items-center space-x-8 xl:space-x-12 font-baskerville">
           <Link
             href="/"
             className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
@@ -72,7 +72,7 @@ export default function Navigation() {
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-white/20">
-          <div className="flex flex-col space-y-4 px-6 py-6">
+          <div className="flex flex-col space-y-4 px-6 py-6 font-baskerville">
             <Link
               href="/"
               className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"

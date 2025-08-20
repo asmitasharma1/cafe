@@ -1,34 +1,33 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Playfair_Display, Inter } from "next/font/google"
+import { Libre_Baskerville, Libre_Franklin } from "next/font/google"
 import "./globals.css"
 
-const playfair = Playfair_Display({
+const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
-  display: "swap",
-  variable: "--font-playfair",
+  weight: ["400", "700"],
+  variable: "--font-libre-baskerville",
 })
 
-const inter = Inter({
+const libreFranklin = Libre_Franklin({
   subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-libre-franklin",
 })
 
 export const metadata: Metadata = {
-  title: "Cafe Cucina - Artisan Coffee & Continental Food",
-  description: "Savor the taste of artisan coffee and continental food at Cafe Cucina",
-  generator: "v0.app",
+  title: "Cafe Cucina",
+  description: "Savor the taste of artisan coffee and continental food",
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} antialiased`}>
-      <body className="font-sans">{children}</body>
+    <html lang="en" className={`${libreBaskerville.variable} ${libreFranklin.variable} antialiased`}>
+      <body className="font-franklin">{children}</body>
     </html>
   )
 }

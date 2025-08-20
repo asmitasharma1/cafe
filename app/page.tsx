@@ -3,33 +3,27 @@ import { Button } from "@/components/ui/button"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import Image from "next/image"
-import { Lato } from "next/font/google"
 import Link from "next/link"
-
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["300", "400", "700"],
-})
 
 export default function CafeCucinaLanding() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 font-franklin">
       <Navigation />
-      <main className="pt-0">
+      <main>
         <div className="min-h-screen relative">
           {/* Hero Section */}
           <div
             className="min-h-screen bg-cover bg-center bg-no-repeat relative flex items-center justify-center"
             style={{
-              backgroundImage: "url(/cafecucina.png)",
+              backgroundImage: "url(/insidecafe.webp)",
             }}
           >
-            <div className="absolute inset-0 bg-black/30" />
+            <div className="absolute inset-0 bg-black/30 backdrop-blur-2" />
 
             {/* Hero Content */}
             <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-4 md:px-6">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-5 border border-white/20">
-                <p className="text-lg md:text-xl font-light mb-4 md:mb-6 tracking-wide">WELCOME TO</p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-1xl p-6 md:p-8 py-8 md:py-12 border border-white/30 mt-16 md:mt-20">
+                <p className="text-lg md:text-5xl font-light mb-4 md:mb-6 tracking-wide">WELCOME TO</p>
 
                 <h1
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 md:mb-8"
@@ -53,7 +47,7 @@ export default function CafeCucinaLanding() {
                 </div>
 
                 <p className="text-lg md:text-xl font-light">
-                  We open from <span className="font-medium">7am</span>
+                  We are open from <span className="font-medium">7am</span>
                   <br />
                   to <span className="font-medium">9pm</span>
                 </p>
@@ -70,19 +64,15 @@ export default function CafeCucinaLanding() {
                   <MapPin className="w-6 h-6 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg md:text-xl font-semibold mb-2">ADDRESS</h3>
-                    <p className="text-base md:text-lg">Pulchowk Square</p>
-                    <p className="text-base md:text-lg">Lalitpur</p>
+                    <p className="text-base md:text-lg">Pulchowk Square, Lalitpur</p>
                   </div>
                 </div>
 
                 {/* Opening Hours with Dividers */}
-                <div className="flex items-start gap-4 justify-center text-center relative">
+                <div className="flex items-start gap-4 justify-center text-center md:text-left relative">
                   <div className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 border-l-2 border-white h-16"></div>
-                  <Clock className="w-6 h-6 mt-1 flex-shrink-0 md:hidden" />
+                  <Clock className="w-6 h-6 mt-1 flex-shrink-0" />
                   <div>
-                    <div className="hidden md:block">
-                      <Clock className="w-6 h-6 mt-1 flex-shrink-0 mx-auto" />
-                    </div>
                     <h3 className="text-lg md:text-xl font-semibold mb-2">OPENING HOURS</h3>
                     <p className="text-base md:text-lg">Sun-Sat Served 7 am to 9 pm</p>
                   </div>
@@ -107,10 +97,7 @@ export default function CafeCucinaLanding() {
               <h2 className="text-2xl md:text-4xl font-bold mb-4" style={{ color: "#67322C" }}>
                 Handcrafted Curations
               </h2>
-              <p
-                className={`text-base md:text-lg font-medium mb-8 md:mb-10 px-4 ${lato.className}`}
-                style={{ color: "#95541E", fontStyle: "italic" }}
-              >
+              <p className="text-base md:text-lg font-medium mb-8 md:mb-10 px-4 italic" style={{ color: "#95541E" }}>
                 Each dish and drink is thoughtfully crafted to elevate your dining experience, blending bold flavors
                 with the finest ingredients.
               </p>
@@ -169,19 +156,19 @@ export default function CafeCucinaLanding() {
                   <p className="text-base md:text-lg font-medium mb-2" style={{ color: "#67322C" }}>
                     About Us
                   </p>
-                  <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6" style={{ color: "#f5a623" }}>
+                  <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6" style={{ color: "#c89343" }}>
                     Our Story and Philosophy
                   </h2>
                   <p
-                    className={`text-base md:text-lg leading-relaxed mb-4 text-justify ${lato.className}`}
-                    style={{ color: "#95541E", fontStyle: "italic" }}
+                    className="text-base md:text-lg leading-relaxed mb-4 text-justify italic"
+                    style={{ color: "#95541E" }}
                   >
                     Café Cucina was born from a love for the warmth and vibrancy of the Italian kitchen where "cucina"
                     means more than just a place to cook; it's the heart of connection, creativity, and community.
                   </p>
                   <p
-                    className={`text-base md:text-lg leading-relaxed mb-6 text-justify ${lato.className}`}
-                    style={{ color: "#95541E", fontStyle: "italic" }}
+                    className="text-base md:text-lg leading-relaxed mb-6 text-justify italic"
+                    style={{ color: "#95541E" }}
                   >
                     Inspired by the spirit of Italian culinary traditions, we envisioned a space where the inviting
                     aroma of freshly brewed coffee meets the soulful essence of a bustling kitchen.
@@ -190,7 +177,7 @@ export default function CafeCucinaLanding() {
                     <Button
                       size="lg"
                       className="px-6 md:px-8 py-3 text-base md:text-lg font-medium shadow-md transition-all duration-300 cursor-pointer  hover:bg-[#d98c1a] hover:scale-105"
-                      style={{ backgroundColor: "#f5a623", color: "white" }}
+                      style={{ backgroundColor: "#c89343", color: "white" }}
                     >
                       Learn More
                     </Button>
@@ -270,7 +257,7 @@ export default function CafeCucinaLanding() {
                   {/* Email */}
                   <div className="flex items-center gap-4 justify-center md:justify-start">
                     <Mail className="w-6 h-6 flex-shrink-0" />
-                    <p className="text-base md:text-lg">caferacucina@gmail.com</p>
+                    <p className="text-base md:text-lg">cafecucina@gmail.com</p>
                   </div>
 
                   {/* Opening Hours */}

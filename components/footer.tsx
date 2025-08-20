@@ -12,7 +12,16 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-center w-full md:w-auto gap-12 text-white">
+        <div className="flex flex-col md:flex-row justify-center w-full md:w-auto gap-12 md:gap-16 text-white">
+          {/* Opening Hours and Location */}
+          <div className="text-center md:text-left">
+            <h3 className="text-lg font-semibold mb-4">OPENING HOURS</h3>
+            <p>Sun - Saturday</p>
+            <p>Served 7AM to 9PM</p>
+            <h3 className="text-lg font-semibold mt-6 mb-4">LOCATION</h3>
+            <p>Pulchowk Square, Lalitpur</p>
+          </div>
+
           {/* Cafe Column */}
           <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4">CAFE</h3>
@@ -55,15 +64,15 @@ export default function Footer() {
           {/* Socials Column */}
           <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4">SOCIALS</h3>
-            <ul className="space-y-4 flex flex-col items-center md:items-start">
+            <ul className="space-y-2 flex flex-col items-center md:items-start">
               <li>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/cafe.cucina/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline cursor-pointer flex items-center gap-2"
                 >
-                  <Instagram className="w-6 h-6" /> Instagram
+                  Instagram
                 </a>
               </li>
               <li>
@@ -73,16 +82,29 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:underline cursor-pointer flex items-center gap-2"
                 >
-                  <Facebook className="w-6 h-6" /> Facebook
+                  Facebook
                 </a>
               </li>
               <li>
-                <a href="tel:+977123456789" className="hover:underline cursor-pointer flex items-center gap-2">
-                  <Phone className="w-6 h-6" /> +977 123456789
+                <a
+                  href="https://tiktok.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline cursor-pointer flex items-center gap-2"
+                >
+                  Tiktok
                 </a>
               </li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto mt-8 pt-4 border-t border-white/40 flex flex-col md:flex-row justify-between items-center text-sm text-white">
+        <p>© CafeCucina 2025. All Rights Reserved</p>
+        <div className="flex gap-6 mt-2 md:mt-0">
+          <Link href="/privacy" className="hover:underline cursor-pointer">Privacy Policy</Link>
+          <Link href="/terms" className="hover:underline cursor-pointer">Terms of Use</Link>
         </div>
       </div>
     </footer>
