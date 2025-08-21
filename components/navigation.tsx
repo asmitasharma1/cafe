@@ -3,9 +3,16 @@
 import { useState } from "react"
 import { Heart, Menu, X } from "lucide-react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const isMenuPage = pathname === "/menu"
+  const desktopTextColor = isMenuPage ? "text-[#67322C]" : "text-white"
+  const desktopHoverColor = isMenuPage ? "hover:text-[#4A231F]" : "hover:text-gray-200"
+  const iconColor = isMenuPage ? "#67322C" : "white"
+  const borderColor = isMenuPage ? "border-[#67322C]" : "border-white"
 
   return (
     <nav className="bg-transparent backdrop-blur-sm px-4 md:px-6 py-0 shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -25,46 +32,56 @@ export default function Navigation() {
         <div className="hidden lg:flex items-center space-x-8 xl:space-x-12 font-baskerville">
           <Link
             href="/"
-            className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
+            className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
+            className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
           >
             About Us
           </Link>
-          <a
-            href="#"
-            className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
+          <Link
+            href="/menu"
+            className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
           >
             Our Menu
-          </a>
+          </Link>
           <a
             href="#"
-            className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
+            className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
           >
             Contact Us
           </a>
           <a
             href="#"
-            className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
+            className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
           >
             Gallery
           </a>
-          <Heart className="w-6 h-6 text-white border border-white rounded-full p-1 cursor-pointer" />
+          <Heart
+            className={`w-6 h-6 ${borderColor} rounded-full p-1 cursor-pointer`}
+            style={{ color: iconColor }}
+          />
         </div>
 
         {/* Mobile Menu Button */}
         <div className="lg:hidden flex items-center space-x-4">
-          <Heart className="w-6 h-6 text-white border border-white rounded-full p-1 cursor-pointer" />
+          <Heart
+            className={`w-6 h-6 ${borderColor} rounded-full p-1 cursor-pointer`}
+            style={{ color: iconColor }}
+          />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-white p-2 cursor-pointer"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? (
+              <X className="w-6 h-6" style={{ color: iconColor }} />
+            ) : (
+              <Menu className="w-6 h-6" style={{ color: iconColor }} />
+            )}
           </button>
         </div>
       </div>
@@ -85,12 +102,12 @@ export default function Navigation() {
             >
               About Us
             </Link>
-            <a
-              href="#"
+            <Link
+              href="/menu"
               className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
             >
               Our Menu
-            </a>
+            </Link>
             <a
               href="#"
               className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
