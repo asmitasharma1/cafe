@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/cafecucina.restaurant/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline cursor-pointer flex items-center gap-2"

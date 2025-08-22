@@ -104,7 +104,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left Image */}
               <div className="rounded-1xl overflow-hidden shadow-lg">
-                <img src="/team.webp" alt="Our Team" className="w-full h-[400px] object-cover" />
+                <img src="/team1.jpg" alt="Our Team" className="w-full h-[400px] object-cover" />
               </div>
 
               {/* Right Content */}

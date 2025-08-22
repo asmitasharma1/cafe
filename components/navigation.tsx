@@ -48,12 +48,12 @@ export default function Navigation() {
           >
             Our Menu
           </Link>
-          <a
-            href="#"
+          <Link
+            href="/contact"
             className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
           >
             Contact Us
-          </a>
+          </Link>
           <a
             href="#"
             className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
@@ -108,12 +108,12 @@ export default function Navigation() {
             >
               Our Menu
             </Link>
-            <a
-              href="#"
+            <Link
+              href="/contact"
               className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
             >
               Contact Us
-            </a>
+            </Link>
             <a
               href="#"
               className="text-white text-lg font-medium cursor-pointer hover:underline hover:text-gray-200 transition-colors"
