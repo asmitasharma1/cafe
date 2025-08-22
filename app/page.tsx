@@ -257,7 +257,7 @@ export default function CafeCucinaLanding() {
                   {/* Email */}
                   <div className="flex items-center gap-4 justify-center md:justify-start">
                     <Mail className="w-6 h-6 flex-shrink-0" />
-                    <p className="text-base md:text-lg">cafecucina@gmail.com</p>
+                    <p className="text-base md:text-lg">caferacucina@gmail.com</p>
                   </div>
 
                   {/* Opening Hours */}
