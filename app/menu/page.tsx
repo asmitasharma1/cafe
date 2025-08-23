@@ -6,6 +6,7 @@ import Footer from "@/components/footer"
 import Image from "next/image"
 import styles from "./MenuPage.module.css"
 import { useState } from "react"
+import { Download } from "lucide-react"
 
 interface MenuItem {
     id: number
@@ -14,6 +15,7 @@ interface MenuItem {
     price: string
     image?: string
 }
+
 
 const menuSections = {
     breakfast: [
@@ -1005,7 +1007,6 @@ const menuSections = {
     ],
 }
 
-
 function MenuSection({
     title,
     items,
@@ -1080,6 +1081,8 @@ export default function MenuPage() {
     ]
 
     const [searchQuery, setSearchQuery] = useState("")
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
     const filteredMenuSections = Object.entries(menuSections).reduce((acc, [key, items]) => {
         const filteredItems = items.filter(item =>
@@ -1109,23 +1112,78 @@ export default function MenuPage() {
                                 alt={`Dish ${(index % images.length) + 1}`}
                                 width={200}
                                 height={200}
-                                className="rounded-xl shadow-md object-cover mx-4"
+                                className="rounded-xl shadow-md object-cover mx-4 cursor-pointer hover:scale-105 transition-transform duration-200"
+                                onClick={() => setSelectedImage(src)}
                             />
                         ))}
                     </div>
                 </div>
             </div>
 
+            {/* Modal for enlarged image */}
+            {selectedImage && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+                    onClick={() => setSelectedImage(null)}
+                >
+                    <div className="relative">
+                        <Image
+                            src={selectedImage}
+                            alt="Enlarged dish"
+                            width={800}
+                            height={600}
+                            className="rounded-xl object-contain max-w-[80vw] max-h-[80vh]"
+                        />
+                        <button
+                            className="absolute top-4 right-4 text-white text-3xl"
+                            onClick={() => setSelectedImage(null)}
+                        >
+                            &times;
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <div className="py-4 px-4 md:px-6">
-                <div className="max-w-2xl mx-auto mb-8">
+                <div className="max-w-2xl mx-auto mb-8 flex items-center gap-4">
                     <input
                         type="text"
                         placeholder="Search menu items..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#c89343]"
+                        className="flex-1 p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#c89343]"
                         style={{ color: "#67322C" }}
                     />
+                    <div className="relative">
+                        <Button
+                            size="lg"
+                            className="px-4 py-2 text-lg font-medium shadow-md hover:scale-105 cursor-pointer transition-all duration-300"
+                            style={{ backgroundColor: "#c89343", color: "white" }}
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        >
+                            <Download className="mr-2 h-5 w-5" /> Download Menu
+                        </Button>
+                        {isDropdownOpen && (
+                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10">
+                                <a
+                                    href="/ccfoodmenu.pdf"
+                                    download="Cafe_Cucina_Food_Menu.pdf"
+                                    className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100"
+                                    style={{ color: "#67322C" }}
+                                >
+                                    <Download className="h-4 w-4" /> Food Menu
+                                </a>
+                                <a
+                                    href="/ccdrinksmenu.pdf"
+                                    download="Cafe_Cucina_Drinks_Menu.pdf"
+                                    className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100"
+                                    style={{ color: "#67322C" }}
+                                >
+                                    <Download className="h-4 w-4" /> Drinks Menu
+                                </a>
+                            </div>
+                        )}
+                    </div>
                 </div>
                 <div className="max-w-6xl mx-auto">
                     {Object.entries(filteredMenuSections).map(([key, items]) => (
@@ -1162,9 +1220,7 @@ export default function MenuPage() {
                             <p className="text-xs italic" style={{ color: "#95541E" }}>
                                 *Some items may contain trace of food allergens such as nuts, eggs, and seafood.
                             </p>
-
                         </div>
-
                         <div
                             className="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto"
                             style={{ backgroundColor: "#f9f7f4" }}
@@ -1173,15 +1229,21 @@ export default function MenuPage() {
                                 Ready to Order?
                             </h3>
                             <p className="text-lg mb-6 italic" style={{ color: "#95541E" }}>
-                                Reserve your table and experience the authentic taste of Café Cucina
+                                Place your order now via WhatsApp and enjoy Café Cucina's authentic flavors!
                             </p>
-                            <Button
-                                size="lg"
-                                className="px-8 py-4 text-lg font-medium shadow-md hover:scale-105 transition-all duration-300"
-                                style={{ backgroundColor: "#c89343", color: "white" }}
+                            <a
+                                href="https://wa.me/9779861601155?text=Hello%20I%20would%20like%20to%20place%20an%20order"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
-                                Book a Table
-                            </Button>
+                                <Button
+                                    size="lg"
+                                    className="px-8 py-4 text-lg font-medium shadow-md hover:scale-105 cursor-pointer transition-all duration-300"
+                                    style={{ backgroundColor: "#c89343", color: "white" }}
+                                >
+                                    Order Now
+                                </Button>
+                            </a>
                         </div>
                     </div>
                 </div>
