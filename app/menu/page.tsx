@@ -16,7 +16,6 @@ interface MenuItem {
     image?: string
 }
 
-
 const menuSections = {
     breakfast: [
         {
@@ -1006,62 +1005,82 @@ const menuSections = {
         },
     ],
 }
-
 function MenuSection({
     title,
     items,
     leftImage,
     rightImage,
-}: { title: string; items: MenuItem[]; leftImage?: string; rightImage?: string }) {
+    thirdImage,
+    isReversed = false,
+}: { title: string; items: MenuItem[]; leftImage?: string; rightImage?: string; thirdImage?: string; isReversed?: boolean }) {
     return (
-        <div className="mb-12 bg-[#fff8f3] rounded-xl p-6 shadow-sm relative overflow-hidden">
-            {(leftImage || rightImage) && (
-                <div
-                    className="absolute inset-0 z-0"
-                    style={{
-                        backgroundImage: leftImage && rightImage
-                            ? `url(${leftImage}), url(${rightImage})`
-                            : leftImage
-                                ? `url(${leftImage})`
-                                : rightImage
-                                    ? `url(${rightImage})`
-                                    : 'none',
-                        backgroundPosition: leftImage && rightImage ? 'left center, right center' : 'center',
-                        backgroundSize: '400px 300px',
-                        backgroundRepeat: 'no-repeat',
-                        opacity: 0.5,
-                    }}
-                />
-            )}
-            <div className="relative z-10">
-                <h2 className="text-2xl md:text-3xl font-bold text-center mb-4" style={{ color: "#67322C" }}>
-                    {title}
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto lg:px-16">
-                    {items.map((item) => (
-                        <div
-                            key={item.id}
-                            className="flex items-center gap-4 p-4 rounded-lg shadow-sm border border-gray-100 hover:scale-103 hover:-translate-y-0.5 transition-transform duration-200"
-                            style={{
-                                background: 'rgba(255, 255, 255, 0.2)',
-                                backdropFilter: 'blur(5px)',
-                            }}
-                        >
-                            <div className="flex-1">
-                                <h3 className="font-semibold text-lg" style={{ color: "#67322C" }}>
-                                    {item.name}
-                                </h3>
-                                <p className="text-sm italic" style={{ color: "#95541E" }}>
-                                    {item.description}
-                                </p>
-                            </div>
-                            <div className="text-right">
-                                <span className="text-xl font-bold" style={{ color: "#c89343" }}>
-                                    {item.price}
-                                </span>
-                            </div>
+        <div className="mb-12 bg-[#fff8f3] rounded-xl p-6 shadow-sm">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8" style={{ color: "#67322C" }}>
+                {title}
+            </h2>
+
+            <div className={`flex flex-col lg:flex-row gap-6 items-start ${isReversed ? "lg:flex-row-reverse" : ""}`}>
+                {/* Images Section */}
+                <div className="w-full lg:w-72 flex flex-col gap-3">
+                    {leftImage && (
+                        <div className="relative overflow-hidden rounded-xl shadow-lg">
+                            <Image
+                                src={leftImage || "/placeholder.svg"}
+                                alt="Menu dish"
+                                width={300}
+                                height={items.length > 10 ? 300 : 200}
+                                className={`w-full ${items.length > 10 ? "h-72" : "h-48"} object-cover hover:scale-105 transition-transform duration-300`}
+                            />
                         </div>
-                    ))}
+                    )}
+                    {rightImage && items.length > 4 && (
+                        <div className="relative overflow-hidden rounded-xl shadow-lg">
+                            <Image
+                                src={rightImage || "/placeholder.svg"}
+                                alt="Menu dish"
+                                width={300}
+                                height={items.length > 10 ? 300 : 200}
+                                className={`w-full ${items.length > 10 ? "h-72" : "h-48"} object-cover hover:scale-105 transition-transform duration-300`}
+                            />
+                        </div>
+                    )}
+                    {thirdImage && items.length > 4 && (
+                        <div className="relative overflow-hidden rounded-xl shadow-lg">
+                            <Image
+                                src={thirdImage || "/placeholder.svg"}
+                                alt="Menu dish"
+                                width={300}
+                                height={items.length > 10 ? 300 : 200}
+                                className={`w-full ${items.length > 10 ? "h-72" : "h-48"} object-cover hover:scale-105 transition-transform duration-300`}
+                            />
+                        </div>
+                    )}
+                </div>
+
+                {/* Menu Items Section */}
+                <div className="flex-1 max-w-3xl">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {items.map((item) => (
+                            <div
+                                key={item.id}
+                                className="flex items-center gap-4 p-4 rounded-lg shadow-sm border border-gray-100 hover:scale-102 hover:-translate-y-0.5 transition-transform duration-200 bg-white"
+                            >
+                                <div className="flex-1">
+                                    <h3 className="font-semibold text-lg" style={{ color: "#67322C" }}>
+                                        {item.name}
+                                    </h3>
+                                    <p className="text-sm italic" style={{ color: "#95541E" }}>
+                                        {item.description}
+                                    </p>
+                                </div>
+                                <div className="text-right">
+                                    <span className="text-xl font-bold" style={{ color: "#c89343" }}>
+                                        {item.price}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
@@ -1069,7 +1088,8 @@ function MenuSection({
 }
 
 export default function MenuPage() {
-    const images = [
+    // Images for the hero marquee section
+    const marqueeImages = [
         "/mixfood1.webp",
         "/sandwich4.webp",
         "/pasta1.webp",
@@ -1080,20 +1100,45 @@ export default function MenuPage() {
         "/avocadotoast.webp",
     ]
 
+    // Mapping of menu sections to specific images in the public folder
+    const sectionImages = {
+        breakfast: ["/fruitbowl.webp", "/avocadotoast.webp", "/fruitbowl.webp"],
+        starters: ["/tender1.webp", "/idkfood.webp"],
+        soups: ["/cafefood.webp"],
+        salads: ["/fruitbowl1.webp"],
+        sandwichBurger: ["/sandwich1.webp", "/burger1.webp"],
+        pasta: ["/pasta1.webp", "/pasta2.webp"],
+        mainCourse: ["/mixfood1.webp", "/tender2.webp","mixfood1.webp"],
+        pizza: ["/cafefood.webp", "/sandwich4.webp"],
+        oriental: ["/momo1.webp", "/momo2.webp"],
+        espresso: ["/coffee.webp", "/pudinajuice.webp"],
+        teas: ["/cafetea.png", "/greenjuice.webp"],
+        coldBeverages: ["/greenjuics1.webp", "/cafecoffee1.webp"],
+        juices: ["/greenjuice.webp", "/greenjuice.webp"],
+        spirits: ["brew2.webp","/yellowdrink.webp", "/sherpabrew.webp"],
+        wines: ["/wine.webp"],
+        beers: ["/beer.webp"],
+        cocktails: ["/creekjuice.webp"],
+    }
+
     const [searchQuery, setSearchQuery] = useState("")
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
-    const filteredMenuSections = Object.entries(menuSections).reduce((acc, [key, items]) => {
-        const filteredItems = items.filter(item =>
-            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.description.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-        if (filteredItems.length > 0) {
-            acc[key] = filteredItems
-        }
-        return acc
-    }, {} as { [key: string]: MenuItem[] })
+    const filteredMenuSections = Object.entries(menuSections).reduce(
+        (acc, [key, items]) => {
+            const filteredItems = items.filter(
+                (item) =>
+                    item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    item.description.toLowerCase().includes(searchQuery.toLowerCase()),
+            )
+            if (filteredItems.length > 0) {
+                acc[key] = filteredItems
+            }
+            return acc
+        },
+        {} as { [key: string]: MenuItem[] },
+    )
 
     return (
         <div className="min-h-screen bg-gray-50 font-franklin">
@@ -1105,11 +1150,11 @@ export default function MenuPage() {
                 </h1>
                 <div className={styles.marqueeContainer}>
                     <div className={styles.marquee}>
-                        {[...images, ...images, ...images].map((src, index) => (
+                        {[...marqueeImages, ...marqueeImages, ...marqueeImages].map((src, index) => (
                             <Image
                                 key={index}
                                 src={src || "/placeholder.svg"}
-                                alt={`Dish ${(index % images.length) + 1}`}
+                                alt={`Dish ${(index % marqueeImages.length) + 1}`}
                                 width={200}
                                 height={200}
                                 className="rounded-xl shadow-md object-cover mx-4 cursor-pointer hover:scale-105 transition-transform duration-200"
@@ -1128,16 +1173,13 @@ export default function MenuPage() {
                 >
                     <div className="relative">
                         <Image
-                            src={selectedImage}
+                            src={selectedImage || "/placeholder.svg"}
                             alt="Enlarged dish"
                             width={800}
                             height={600}
                             className="rounded-xl object-contain max-w-[80vw] max-h-[80vh]"
                         />
-                        <button
-                            className="absolute top-4 right-4 text-white text-3xl"
-                            onClick={() => setSelectedImage(null)}
-                        >
+                        <button className="absolute top-4 right-4 text-white text-3xl" onClick={() => setSelectedImage(null)}>
                             &times;
                         </button>
                     </div>
@@ -1186,21 +1228,33 @@ export default function MenuPage() {
                     </div>
                 </div>
                 <div className="max-w-6xl mx-auto">
-                    {Object.entries(filteredMenuSections).map(([key, items]) => (
+                    {Object.entries(filteredMenuSections).map(([key, items], index) => (
                         <MenuSection
                             key={key}
                             title={
-                                key === "breakfast" ? "Breakfast Special Menu" :
-                                    key === "starters" ? "Starters & Appetizers" :
-                                        key === "sandwichBurger" ? "Sandwiches & Burgers" :
-                                            key === "pasta" ? "Pasta & Risotto" :
-                                                key === "oriental" ? "From Oriental Kitchen" :
-                                                    key === "espresso" ? "Espresso & Hot Beverages" :
-                                                        key === "coldBeverages" ? "Cold Beverages" :
-                                                            key === "juices" ? "Fresh Juices & Smoothies" :
-                                                                key.charAt(0).toUpperCase() + key.slice(1)
+                                key === "breakfast"
+                                    ? "Breakfast Special Menu"
+                                    : key === "starters"
+                                        ? "Starters & Appetizers"
+                                        : key === "sandwichBurger"
+                                            ? "Sandwiches & Burgers"
+                                            : key === "pasta"
+                                                ? "Pasta & Risotto"
+                                                : key === "oriental"
+                                                    ? "From Oriental Kitchen"
+                                                    : key === "espresso"
+                                                        ? "Espresso & Hot Beverages"
+                                                        : key === "coldBeverages"
+                                                            ? "Cold Beverages"
+                                                            : key === "juices"
+                                                                ? "Fresh Juices & Smoothies"
+                                                                : key.charAt(0).toUpperCase() + key.slice(1)
                             }
                             items={items}
+                            leftImage={sectionImages[key]?.[0]}
+                            rightImage={items.length > 4 ? sectionImages[key]?.[1] : undefined}
+                            thirdImage={items.length > 4 ? sectionImages[key]?.[2] : undefined}
+                            isReversed={index % 2 === 1}
                         />
                     ))}
                     <div className="text-center mt-16">
