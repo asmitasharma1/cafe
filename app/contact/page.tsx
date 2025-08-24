@@ -5,7 +5,6 @@ import { MapPin, Phone, Mail, Clock, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
-import Image from "next/image"
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -63,7 +62,6 @@ export default function ContactPage() {
 
         setIsSubmitting(true)
         try {
-            // Simulate API call (replace with actual API endpoint)
             console.log("Form submitted:", formData)
             setSubmitStatus("success")
             setFormData({ name: "", email: "", subject: "", message: "" })
@@ -80,7 +78,7 @@ export default function ContactPage() {
             <main>
                 {/* Hero Section */}
                 <div
-                    className="min-h-[40vh] pt-20 bg-cover bg-center bg-no-repeat relative flex items-center justify-center"
+                    className="min-h-[80vh] pt-10 bg-cover bg-center bg-no-repeat relative flex items-center justify-center"
                     style={{
                         backgroundImage: "url(/location.webp)",
                     }}
@@ -95,7 +93,7 @@ export default function ContactPage() {
                                 Contact Us
                             </h1>
                             <p className="text-sm md:text-lg font-light italic px-2 text-gray-200">
-                                Reach out to Café Cucina for inquiries, reservations, or feedback. We’re here to connect!
+                                Reach out to Café Cucina for inquiries, reservations, or feedback. We're here to connect!
                             </p>
                         </div>
                     </div>
@@ -198,39 +196,43 @@ export default function ContactPage() {
                             </form>
                         </div>
 
-                        {/* Contact Info and Image */}
+                        {/* Contact Info and Map */}
                         <div>
                             <h2
-                                className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center md:text-left"
+                                className="text-2xl md:text-2xl font-bold mb-4 md:mb-4 text-center md:text-left"
                                 style={{ color: "#67322C" }}
                             >
                                 Contact Information
                             </h2>
-                            <div className="space-y-4 md:space-y-6 text-[#67322C] mb-8">
-                                <div className="flex items-center gap-4 justify-center md:justify-start">
+                            <div className="space-y-2 md:space-y-6 text-[#67322C] mb-4">
+                                <div className="flex items-center gap-2 justify-center md:justify-start">
                                     <MapPin className="w-6 h-6 flex-shrink-0" />
                                     <p className="text-base md:text-lg">Pulchowk Square, Lalitpur</p>
                                 </div>
-                                <div className="flex items-center gap-4 justify-center md:justify-start">
+                                <div className="flex items-center gap-2 justify-center md:justify-start">
                                     <Phone className="w-6 h-6 flex-shrink-0" />
                                     <p className="text-base md:text-lg">9861601155</p>
                                 </div>
-                                <div className="flex items-center gap-4 justify-center md:justify-start">
+                                <div className="flex items-center gap-2 justify-center md:justify-start">
                                     <Mail className="w-6 h-6 flex-shrink-0" />
                                     <p className="text-base md:text-lg">caferacucina@gmail.com</p>
                                 </div>
-                                <div className="flex items-center gap-4 justify-center md:justify-start">
+                                <div className="flex items-center gap-2 justify-center md:justify-start">
                                     <Clock className="w-6 h-6 flex-shrink-0" />
                                     <p className="text-base md:text-lg">Sun-Sat Served 7 am to 9 pm</p>
                                 </div>
                             </div>
-                            <div className="flex px-10">
-                                <Image
-                                    src="/interior.webp"
-                                    alt="Cafe Contact"
-                                    width={300}
-                                    height={200}
-                                    className="shadow-lg object-cover md:w-[350px] md:h-[230px]"
+                            <div className="w-full">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.260162252568!2d85.31310739999999!3d27.6783529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb195f7bcc0349%3A0xdeb21c851d1fef6e!2sCafe%20%26%20Cucina!5e0!3m2!1sen!2snp!4v1756051189504!5m2!1sen!2snp"
+                                    width="100%"
+                                    height="300"
+                                    className="shadow-lg border-2 border-[#67322C] md:h-[350px]"
+                                    style={{ border: 0 }}
+                                    allowFullScreen
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    title="Cafe & Cucina Location"
                                 />
                             </div>
                         </div>
