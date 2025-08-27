@@ -1,4 +1,3 @@
-import { Instagram, Facebook, Phone } from "lucide-react"
 import Link from "next/link"
 
 export default function Footer() {
@@ -103,8 +102,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto mt-8 pt-4 border-t border-white/40 flex flex-col md:flex-row justify-between items-center text-sm text-white">
         <p>© CafeCucina 2025. All Rights Reserved</p>
         <div className="flex gap-6 mt-2 md:mt-0">
-          <Link href="/privacy" className="hover:underline cursor-pointer">Privacy Policy</Link>
-          <Link href="/terms" className="hover:underline cursor-pointer">Terms of Use</Link>
+          <Link href="/privacy" className="hover:underline cursor-pointer">
+            Privacy Policy
+          </Link>
+          <Link href="/terms" className="hover:underline cursor-pointer">
+            Terms of Use
+          </Link>
         </div>
       </div>
     </footer>

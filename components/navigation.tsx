@@ -60,18 +60,12 @@ export default function Navigation() {
           >
             Gallery
           </a>
-          <Heart
-            className={`w-6 h-6 ${borderColor} rounded-full p-1 cursor-pointer`}
-            style={{ color: iconColor }}
-          />
+          <Heart className={`w-6 h-6 ${borderColor} rounded-full p-1 cursor-pointer`} style={{ color: iconColor }} />
         </div>
 
         {/* Mobile Menu Button */}
         <div className="lg:hidden flex items-center space-x-4">
-          <Heart
-            className={`w-6 h-6 ${borderColor} rounded-full p-1 cursor-pointer`}
-            style={{ color: iconColor }}
-          />
+          <Heart className={`w-6 h-6 ${borderColor} rounded-full p-1 cursor-pointer`} style={{ color: iconColor }} />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-white p-2 cursor-pointer"
