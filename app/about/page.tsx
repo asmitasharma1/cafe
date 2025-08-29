@@ -224,6 +224,82 @@ export default function AboutPage() {
                 <img src="/team1.jpg" alt="Our Team" className="w-full h-[390px] object-cover" />
               </div>
             </div>
+
+            {/* Our Team Members */}
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* Team Member 1 */}
+              <div className="text-center">
+                <div className="w-full h-[250px] rounded-1xl overflow-hidden shadow-md mb-4">
+                  <img src="/cafeteam.webp" alt="H.B Khatri" className="w-full h-full object-cover" />
+                </div>
+                <h3
+                  className={`text-xl font-semibold ${libreBaskerville.className}`}
+                  style={{ color: "#c89343" }}
+                >
+                  H.B Khatri (Shiva)
+                </h3>
+                <p
+                  className={`text-base ${libreFranklin.className}`}
+                  style={{ color: "#95541E" }}
+                >
+                  Chairman
+                </p>
+              </div>
+              {/* Team Member 2 */}
+              <div className="text-center">
+                <div className="w-full h-[250px] rounded-1xl overflow-hidden shadow-md mb-4">
+                  <img src="/cafeteam.webp" alt="Sudan Singh Silwal" className="w-full h-full object-cover" />
+                </div>
+                <h3
+                  className={`text-xl font-semibold ${libreBaskerville.className}`}
+                  style={{ color: "#c89343" }}
+                >
+                  Sudan Singh Silwal
+                </h3>
+                <p
+                  className={`text-base ${libreFranklin.className}`}
+                  style={{ color: "#95541E" }}
+                >
+                  Investor
+                </p>
+              </div>
+              {/* Team Member 3 */}
+              <div className="text-center">
+                <div className="w-full h-[250px] rounded-1xl overflow-hidden shadow-md mb-4">
+                  <img src="/cafeteam.webp" alt="Kishor Sharma Hamal" className="w-full h-full object-cover" />
+                </div>
+                <h3
+                  className={`text-xl font-semibold ${libreBaskerville.className}`}
+                  style={{ color: "#c89343" }}
+                >
+                  Kishor Sharma Hamal
+                </h3>
+                <p
+                  className={`text-base ${libreFranklin.className}`}
+                  style={{ color: "#95541E" }}
+                >
+                  Investor
+                </p>
+              </div>
+              {/* Team Member 4 */}
+              <div className="text-center">
+                <div className="w-full h-[250px] rounded-1xl overflow-hidden shadow-md mb-4">
+                  <img src="/cafeteam.webp" alt="Suresh Subedi" className="w-full h-full object-cover" />
+                </div>
+                <h3
+                  className={`text-xl font-semibold ${libreBaskerville.className}`}
+                  style={{ color: "#c89343" }}
+                >
+                  Suresh Subedi
+                </h3>
+                <p
+                  className={`text-base ${libreFranklin.className}`}
+                  style={{ color: "#95541E" }}
+                >
+                  Investor
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </main>
