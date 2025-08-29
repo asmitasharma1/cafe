@@ -1,6 +1,7 @@
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import { Libre_Baskerville, Libre_Franklin } from "next/font/google"
+import SocialMediaSidebar from "@/components/social-media-sidebar"
 
 const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
@@ -16,6 +17,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navigation />
+      <SocialMediaSidebar />
       <main className="pt-0">
         {/* Hero Section */}
         <div

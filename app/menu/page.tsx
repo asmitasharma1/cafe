@@ -7,6 +7,7 @@ import styles from "./MenuPage.module.css"
 import { useState, useEffect } from "react"
 import { Download } from "lucide-react"
 import jsPDF from "jspdf"
+import SocialMediaSidebar from "@/components/social-media-sidebar"
 
 interface MenuItem {
   id: number
@@ -58,14 +59,15 @@ function MenuSection({
         <div
           className={`flex flex-col lg:flex-row gap-12 items-center min-h-[350px] ${isReversed ? "lg:flex-row-reverse" : ""}`}
         >
-          <div className="flex-1 max-w-2xl">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-left" style={{ color: "#67322C" }}>
+          {/* Menu items container - center aligned on mobile */}
+          <div className="flex-1 max-w-2xl w-full text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 md:text-left" style={{ color: "#67322C" }}>
               {title}
             </h2>
             {Array.isArray(items) &&
               items.map((item) => (
-                <div key={item.id} className="flex items-start justify-between py-1 mb-1">
-                  <div className="flex-1 pr-4">
+                <div key={item.id} className="flex flex-col md:flex-row md:items-start md:justify-between py-1 mb-1">
+                  <div className="flex-1 md:pr-4">
                     <h3 className="font-semibold text-sm mb-0.5" style={{ color: "#67322C" }}>
                       {item.name
                         .replace(/\s*$$V$$\s*/g, "")
@@ -77,7 +79,7 @@ function MenuSection({
                       </p>
                     )}
                   </div>
-                  <div className="text-right">
+                  <div className="md:text-right mt-1 md:mt-0">
                     <span className="text-base font-bold" style={{ color: "#67322C" }}>
                       {item.price}
                     </span>
@@ -424,6 +426,7 @@ export default function MenuPage() {
   return (
     <div className="min-h-screen bg-[#fff8f3] font-franklin">
       <Navigation />
+      <SocialMediaSidebar />
       <div className="py-24 px-6 md:px-8 text-center bg-[#fff8f3]">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6" style={{ color: "#67322C" }}>
           Dive Into Delicious <br /> Meal Dishes
@@ -465,13 +468,13 @@ export default function MenuPage() {
       )}
       <div className="py-4 px-4 md:px-4 bg-[#fff8f3]">
         <div className="max-w-5xl mx-auto">
-          <div className="max-w-2xl mx-auto mb-8 flex items-center gap-4">
+          <div className="max-w-2xl mx-auto mb-8 flex flex-col md:flex-row items-center gap-4">
             <input
               type="text"
               placeholder="Search menu items..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex-1 p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#c89343]"
+              className="flex-1 p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#c89343] text-center md:text-left"
               style={{ color: "#67322C" }}
             />
             <Button
@@ -524,7 +527,7 @@ export default function MenuPage() {
                 <h3 className="text-2xl font-bold mb-4" style={{ color: "#67322C" }}>
                   Ready to Order?
                 </h3>
-                <p className="text-lg mb-6 italic" style={{ color: "#95541E" }}>
+                <p className="text-lg mb-6 " style={{ color: "#95541E" }}>
                   Place your order now via WhatsApp and enjoy Café Cucina's authentic flavors!
                 </p>
                 <a
