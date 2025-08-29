@@ -54,7 +54,7 @@ function MenuSection({
       <div className="absolute top-12 right-16 opacity-40">
         <div className="w-2 h-2 bg-red-400 rounded-full"></div>
       </div>
-     
+
       <div className="max-w-7xl mx-auto">
         <div
           className={`flex flex-col lg:flex-row gap-12 items-center min-h-[350px] ${isReversed ? "lg:flex-row-reverse" : ""}`}
@@ -307,16 +307,16 @@ export default function MenuPage() {
 
   const filteredMenuSections: { [key: string]: MenuItem[] } = menuData?.menuSections
     ? Object.fromEntries(
-        Object.entries(menuData.menuSections)
-          .map(([key, items]) => [
-            key,
-            (Array.isArray(items) ? items : []).filter((item) => {
-              const q = searchQuery.toLowerCase()
-              return item.name?.toLowerCase().includes(q) || item.description?.toLowerCase().includes(q)
-            }),
-          ])
-          .filter(([, items]) => items.length > 0),
-      )
+      Object.entries(menuData.menuSections)
+        .map(([key, items]) => [
+          key,
+          (Array.isArray(items) ? items : []).filter((item) => {
+            const q = searchQuery.toLowerCase()
+            return item.name?.toLowerCase().includes(q) || item.description?.toLowerCase().includes(q)
+          }),
+        ])
+        .filter(([, items]) => items.length > 0),
+    )
     : {}
 
   const downloadMenuPDF = () => {
@@ -427,26 +427,26 @@ export default function MenuPage() {
     <div className="min-h-screen bg-[#fff8f3] font-franklin">
       <Navigation />
       <SocialMediaSidebar />
-      <div className="py-24 px-6 md:px-8 text-center bg-[#fff8f3]">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6" style={{ color: "#67322C" }}>
-          Dive Into Delicious <br /> Meal Dishes
-        </h1>
-        <div className={styles.marqueeContainer}>
-          <div className={styles.marquee}>
-            {[...marqueeImages, ...marqueeImages, ...marqueeImages].map((src, index) => (
-              <Image
-                key={index}
-                src={src || "/placeholder.svg"}
-                alt={`Dish ${(index % marqueeImages.length) + 1}`}
-                width={200}
-                height={200}
-                className="rounded-xl shadow-md object-cover mx-4 cursor-pointer hover:scale-105 transition-transform duration-200"
-                onClick={() => setSelectedImage(src)}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      <div className="py-24 px-6 md:px-8 text-center bg-[#67322c5d]">
+  <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6" style={{ color: "#FFFFFF" }}>
+    Dive Into Delicious <br /> Meal Dishes
+  </h1>
+  <div className={styles.marqueeContainer}>
+    <div className={styles.marquee}>
+      {[...marqueeImages, ...marqueeImages, ...marqueeImages].map((src, index) => (
+        <Image
+          key={index}
+          src={src || "/placeholder.svg"}
+          alt={`Dish ${(index % marqueeImages.length) + 1}`}
+          width={200}
+          height={200}
+          className="rounded-xl shadow-md object-cover mx-4 cursor-pointer hover:scale-105 transition-transform duration-200"
+          onClick={() => setSelectedImage(src)}
+        />
+      ))}
+    </div>
+  </div>
+</div>
       {selectedImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
