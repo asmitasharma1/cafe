@@ -22,7 +22,7 @@ export default function CafeCucinaLanding() {
 
           {/* Hero Content */}
           <div className="relative z-10 text-center text-white max-w-2xl mx-auto px-4 md:px-6">
-            <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-2xl mt-12 md:mt-16">
+            <div className="bg-black/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-2xl mt-12 md:mt-16">
               <p className="text-base md:text-2xl font-light mb-2 md:mb-4 tracking-wide text-gray-100">
                 WELCOME TO
               </p>
@@ -108,16 +108,16 @@ export default function CafeCucinaLanding() {
             <div className="relative flex flex-col justify-center items-center min-h-[300px] md:min-h-[400px]">
               {/* Background Image */}
               <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                <Image src="/cafecoffee.png" alt="Background Curated Item" fill className="object-cover" priority />
+                <Image src="/coffee.webp" alt="Background Curated Item" fill className="object-cover" priority />
                 {/* Brown overlay */}
-                <div className="absolute inset-0 bg-amber-900/20"></div>
+                <div className="absolute inset-0 bg-amber-900/40"></div>
               </div>
 
               {/* Foreground Images */}
               <div className="flex flex-col md:flex-row gap-8 md:gap-28 relative z-10">
                 <div className="rounded-1xl overflow-hidden shadow-lg">
                   <Image
-                    src="/cafetea.png"
+                    src="/foodwine.webp"
                     alt="Curated Item 1"
                     width={250}
                     height={167}
@@ -126,7 +126,7 @@ export default function CafeCucinaLanding() {
                 </div>
                 <div className="rounded-1xl overflow-hidden shadow-lg">
                   <Image
-                    src="/cafefood.png"
+                    src="/cafefood1.png"
                     alt="Curated Item 2"
                     width={250}
                     height={167}

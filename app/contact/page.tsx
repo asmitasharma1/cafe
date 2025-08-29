@@ -103,7 +103,7 @@ export default function ContactPage() {
         >
           <div className="absolute inset-0 bg-black/10 backdrop-blur-xs" />
           <div className="relative z-10 text-center text-white max-w-2xl mx-auto px-4 md:px-6">
-            <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-2xl">
+            <div className="bg-black/20 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 shadow-2xl">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6" style={{ color: "#c89343" }}>
                 Contact Us
               </h1>
