@@ -4,8 +4,8 @@ import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import Image from "next/image"
 import styles from "./MenuPage.module.css"
-import { useState, useEffect } from "react"
-import { Download } from "lucide-react"
+import { useState, useEffect, useCallback } from "react"
+import { ArrowUp, Download } from "lucide-react"
 import jsPDF from "jspdf"
 import SocialMediaSidebar from "@/components/social-media-sidebar"
 
@@ -253,6 +253,63 @@ export default function MenuPage() {
   const [error, setError] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [isVisible, setIsVisible] = useState(false);
+
+
+  const handleScroll = useCallback(() => {
+    const windowScrollY = window.scrollY || window.pageYOffset;
+    const documentScrollTop = document.documentElement.scrollTop;
+    const bodyScrollTop = document.body.scrollTop;
+
+    const scrollTop = Math.max(windowScrollY, documentScrollTop, bodyScrollTop);
+
+    if (scrollTop > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const addScrollListeners = () => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      document.addEventListener("scroll", handleScroll, { passive: true });
+      document.body.addEventListener("scroll", handleScroll, { passive: true });
+    };
+
+    const removeScrollListeners = () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll);
+      document.body.removeEventListener("scroll", handleScroll);
+    };
+
+    addScrollListeners();
+    handleScroll();
+
+    return () => {
+      removeScrollListeners();
+    };
+  }, [handleScroll]);
+
+  const scrollToTop = () => {
+    try {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+
+      setTimeout(() => {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        window.pageYOffset = 0;
+      }, 100);
+    } catch (error) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+  };
 
   useEffect(() => {
     const fetchMenuData = async () => {
@@ -427,26 +484,48 @@ export default function MenuPage() {
     <div className="min-h-screen bg-[#fff8f3] font-franklin">
       <Navigation />
       <SocialMediaSidebar />
-      <div className="py-24 px-6 md:px-8 text-center bg-[#67322c5d]">
-  <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6" style={{ color: "#FFFFFF" }}>
-    Dive Into Delicious <br /> Meal Dishes
-  </h1>
-  <div className={styles.marqueeContainer}>
-    <div className={styles.marquee}>
-      {[...marqueeImages, ...marqueeImages, ...marqueeImages].map((src, index) => (
-        <Image
-          key={index}
-          src={src || "/placeholder.svg"}
-          alt={`Dish ${(index % marqueeImages.length) + 1}`}
-          width={200}
-          height={200}
-          className="rounded-xl shadow-md object-cover mx-4 cursor-pointer hover:scale-105 transition-transform duration-200"
-          onClick={() => setSelectedImage(src)}
-        />
-      ))}
-    </div>
-  </div>
-</div>
+      <div
+        className="py-24 px-6 md:px-8 text-center relative" // Added relative to contain overlay
+        style={{
+          backgroundImage: "url('cafephoto.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center 60%",
+          backgroundRepeat: "no-repeat",
+          minHeight: "200px", // Reduced height from 300px to 200px
+        }}
+      >
+        {/* Overlay with blur effect */}
+        <div
+          className="absolute inset-0 backdrop-blur-xs bg-[#67322c5d] z-0" // Added z-0 to keep overlay behind content
+        ></div>
+        {/* Content wrapper to ensure text is above overlay */}
+        <div className="relative z-10"> {/* Added z-10 to bring content forward */}
+          <h1
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6"
+            style={{ color: "#FFFFFF" }}
+          >
+            Dive Into Delicious <br /> Meal Dishes
+          </h1>
+          <div className={styles.marqueeContainer}>
+            <div className={styles.marquee}>
+              {[...marqueeImages, ...marqueeImages, ...marqueeImages].map(
+                (src, index) => (
+                  <Image
+                    key={index}
+                    src={src || "/placeholder.svg"}
+                    alt={`Dish ${(index % marqueeImages.length) + 1}`}
+                    width={200}
+                    height={200}
+                    className="rounded-xl shadow-md object-cover mx-4 cursor-pointer hover:scale-105 transition-transform duration-200"
+                    onClick={() => setSelectedImage(src)}
+                  />
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Rest of your code remains unchanged */}
       {selectedImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
@@ -460,7 +539,10 @@ export default function MenuPage() {
               height={600}
               className="rounded-xl object-contain max-w-[80vw] max-h-[80vh]"
             />
-            <button className="absolute top-4 right-4 text-white text-3xl" onClick={() => setSelectedImage(null)}>
+            <button
+              className="absolute top-4 right-4 text-white text-3xl"
+              onClick={() => setSelectedImage(null)}
+            >
               &times;
             </button>
           </div>
@@ -488,19 +570,22 @@ export default function MenuPage() {
           </div>
           <div>
             {Object.entries(filteredMenuSections).map(([key, items], index) => {
-              const category = menuData?.categories.find((cat) => cat.name === key)
-              const imgs = sectionImages[key] || []
+              const category = menuData?.categories.find((cat) => cat.name === key);
+              const imgs = sectionImages[key] || [];
               return (
                 <MenuSection
                   key={key}
-                  title={category?.display_name || key.charAt(0).toUpperCase() + key.slice(1)}
+                  title={
+                    category?.display_name ||
+                    key.charAt(0).toUpperCase() + key.slice(1)
+                  }
                   items={items}
                   leftImage={imgs[0]}
                   rightImage={imgs[1]}
                   thirdImage={imgs[2]}
                   isReversed={index % 2 === 1}
                 />
-              )
+              );
             })}
             <div className="text-center mt-16">
               <div
@@ -527,7 +612,7 @@ export default function MenuPage() {
                 <h3 className="text-2xl font-bold mb-4" style={{ color: "#67322C" }}>
                   Ready to Order?
                 </h3>
-                <p className="text-lg mb-6 " style={{ color: "#95541E" }}>
+                <p className="text-lg mb-6" style={{ color: "#95541E" }}>
                   Place your order now via WhatsApp and enjoy Café Cucina's authentic flavors!
                 </p>
                 <a
@@ -549,6 +634,15 @@ export default function MenuPage() {
         </div>
       </div>
       <Footer />
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-[9999] bg-gradient-to-r from-amber-800 to-amber-900 hover:from-amber-850 hover:to-amber-900 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 border-2 border-white/20"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </button>
+      )}
     </div>
-  )
-}
+
+)};

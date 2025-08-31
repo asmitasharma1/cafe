@@ -1,20 +1,21 @@
 
 "use client"
 
-import { MapPin, Clock, Phone } from "lucide-react"
+import { MapPin, Clock, Phone, ArrowUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import SocialMediaSidebar from "@/components/social-media-sidebar"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 // Import AOS for scroll animations
 import AOS from "aos"
 import "aos/dist/aos.css"
 
 export default function CafeCucinaLanding() {
+  const [isVisible, setIsVisible] = useState(false);
   // Initialize AOS on component mount
   useEffect(() => {
     AOS.init({
@@ -23,6 +24,62 @@ export default function CafeCucinaLanding() {
       easing: "ease-out",
     })
   }, [])
+
+  
+  const handleScroll = useCallback(() => {
+    const windowScrollY = window.scrollY || window.pageYOffset;
+    const documentScrollTop = document.documentElement.scrollTop;
+    const bodyScrollTop = document.body.scrollTop;
+
+    const scrollTop = Math.max(windowScrollY, documentScrollTop, bodyScrollTop);
+
+    if (scrollTop > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const addScrollListeners = () => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      document.addEventListener("scroll", handleScroll, { passive: true });
+      document.body.addEventListener("scroll", handleScroll, { passive: true });
+    };
+
+    const removeScrollListeners = () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll);
+      document.body.removeEventListener("scroll", handleScroll);
+    };
+
+    addScrollListeners();
+    handleScroll();
+
+    return () => {
+      removeScrollListeners();
+    };
+  }, [handleScroll]);
+
+  const scrollToTop = () => {
+    try {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+
+      setTimeout(() => {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        window.pageYOffset = 0;
+      }, 100);
+    } catch (error) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 font-franklin">
@@ -41,7 +98,7 @@ export default function CafeCucinaLanding() {
         }
         .marquee-container {
           overflow-x: hidden;
-          white-space: nowrap藝術
+          white-space: nowrap
           width: 100%;
           max-width: 1800px; /* Increased width for larger display */
         }
@@ -363,6 +420,15 @@ export default function CafeCucinaLanding() {
         </div>
       </main>
       <Footer />
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-[9999] bg-gradient-to-r from-amber-800 to-amber-900 hover:from-amber-850 hover:to-amber-900 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 border-2 border-white/20"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </button>
+      )}
     </div>
   )
 }

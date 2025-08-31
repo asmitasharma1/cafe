@@ -1,7 +1,10 @@
+"use client"; 
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import { Libre_Baskerville, Libre_Franklin } from "next/font/google"
 import SocialMediaSidebar from "@/components/social-media-sidebar"
+import { useCallback, useEffect, useState } from "react"
+import { ArrowUp } from "lucide-react"
 
 const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
@@ -14,6 +17,64 @@ const libreFranklin = Libre_Franklin({
 })
 
 export default function AboutPage() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  
+  const handleScroll = useCallback(() => {
+    const windowScrollY = window.scrollY || window.pageYOffset;
+    const documentScrollTop = document.documentElement.scrollTop;
+    const bodyScrollTop = document.body.scrollTop;
+  
+    const scrollTop = Math.max(windowScrollY, documentScrollTop, bodyScrollTop);
+  
+    if (scrollTop > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, []);
+  
+  useEffect(() => {
+    const addScrollListeners = () => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      document.addEventListener("scroll", handleScroll, { passive: true });
+      document.body.addEventListener("scroll", handleScroll, { passive: true });
+    };
+  
+    const removeScrollListeners = () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll);
+      document.body.removeEventListener("scroll", handleScroll);
+    };
+  
+    addScrollListeners();
+    handleScroll();
+  
+    return () => {
+      removeScrollListeners();
+    };
+  }, [handleScroll]);
+  
+  const scrollToTop = () => {
+    try {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+  
+      setTimeout(() => {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        window.pageYOffset = 0;
+      }, 100);
+    } catch (error) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+  };
+  
   return (
     <div className="min-h-screen bg-gray-100">
       <Navigation />
@@ -304,6 +365,15 @@ export default function AboutPage() {
         </div>
       </main>
       <Footer />
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-[9999] bg-gradient-to-r from-amber-800 to-amber-900 hover:from-amber-850 hover:to-amber-900 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 border-2 border-white/20"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </button>
+      )}
     </div>
   )
 }
