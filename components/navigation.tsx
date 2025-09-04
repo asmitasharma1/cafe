@@ -77,7 +77,7 @@ export default function Navigation() {
             Contact Us
           </Link>
           <a
-            href="#"
+            href="/gallery"
             className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
           >
             Gallery
@@ -149,7 +149,7 @@ export default function Navigation() {
               Contact Us
             </Link>
             <a
-              href="#"
+              href="/gallery"
               className="text-[#4A231F] text-lg font-medium cursor-pointer hover:underline hover:text-[#67322C] transition-colors"
             >
               Gallery

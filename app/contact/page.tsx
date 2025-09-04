@@ -88,63 +88,63 @@ export default function ContactPage() {
       setIsSubmitting(false);
     }
   };
+
   const [isVisible, setIsVisible] = useState(false);
 
   const handleScroll = useCallback(() => {
-      const windowScrollY = window.scrollY || window.pageYOffset;
-      const documentScrollTop = document.documentElement.scrollTop;
-      const bodyScrollTop = document.body.scrollTop;
-  
-      const scrollTop = Math.max(windowScrollY, documentScrollTop, bodyScrollTop);
-  
-      if (scrollTop > 100) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    }, []);
-  
-    useEffect(() => {
-      const addScrollListeners = () => {
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        document.addEventListener("scroll", handleScroll, { passive: true });
-        document.body.addEventListener("scroll", handleScroll, { passive: true });
-      };
-  
-      const removeScrollListeners = () => {
-        window.removeEventListener("scroll", handleScroll);
-        document.removeEventListener("scroll", handleScroll);
-        document.body.removeEventListener("scroll", handleScroll);
-      };
-  
-      addScrollListeners();
-      handleScroll();
-  
-      return () => {
-        removeScrollListeners();
-      };
-    }, [handleScroll]);
-  
-    const scrollToTop = () => {
-      try {
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: "smooth",
-        });
-  
-        setTimeout(() => {
-          document.documentElement.scrollTop = 0;
-          document.body.scrollTop = 0;
-          window.pageYOffset = 0;
-        }, 100);
-      } catch (error) {
+    const windowScrollY = window.scrollY || window.pageYOffset;
+    const documentScrollTop = document.documentElement.scrollTop;
+    const bodyScrollTop = document.body.scrollTop;
+
+    const scrollTop = Math.max(windowScrollY, documentScrollTop, bodyScrollTop);
+
+    if (scrollTop > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const addScrollListeners = () => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      document.addEventListener("scroll", handleScroll, { passive: true });
+      document.body.addEventListener("scroll", handleScroll, { passive: true });
+    };
+
+    const removeScrollListeners = () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll);
+      document.body.removeEventListener("scroll", handleScroll);
+    };
+
+    addScrollListeners();
+    handleScroll();
+
+    return () => {
+      removeScrollListeners();
+    };
+  }, [handleScroll]);
+
+  const scrollToTop = () => {
+    try {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+
+      setTimeout(() => {
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
-        window.scrollTo(0, 0);
-      }
-    };
-  
+        window.pageYOffset = 0;
+      }, 100);
+    } catch (error) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans">
@@ -172,127 +172,119 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Form Section */}
-        <div className="py-8 md:py-10 px-4 md:px-6 bg-[#f5e9db]">
-          <div className="max-w-5xl mx-auto flex items-center justify-between gap-4">
-            <img
-              src="/mirrorfinal.png"
-              alt="Decorative Mirror"
-              className="w-64 h-64 md:w-96 md:h-96 object-contain hidden md:block -ml-16"
-            />
-            <div
-              className="relative bg-white shadow-lg overflow-hidden max-w-2xl w-full"
-              style={{
-                border: "2px solid #8B5A2B",
-                borderRadius: "50% 50% 10px 10px / 30% 30% 10px 10px",
-                paddingTop: "90px",
-              }}
-            >
-              <div className="relative z-10 p-6">
-                <h2
-                  className="text-2xl md:text-3xl font-bold mb-6 text-center"
-                  style={{ color: "#67322C", position: "relative", top: "-40px" }}
-                >
-                  Get in Touch
-                </h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="name" className="block text-base font-medium" style={{ color: "#67322C" }}>
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c89343]"
-                      style={{ borderColor: "#8B5A2B" }}
-                    />
-                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-base font-medium" style={{ color: "#67322C" }}>
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c89343]"
-                      style={{ borderColor: "#8B5A2B" }}
-                    />
-                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-base font-medium" style={{ color: "#67322C" }}>
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c89343]"
-                      style={{ borderColor: "#8B5A2B" }}
-                    />
-                    {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-base font-medium" style={{ color: "#67322C" }}>
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      rows={5}
-                      className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c89343]"
-                      style={{ borderColor: "#8B5A2B" }}
-                    />
-                    {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
-                  </div>
-                  <div className="flex justify-center">
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="px-6 md:px-8 py-3 text-base md:text-lg font-medium shadow-md flex items-center gap-2 cursor-pointer"
-                      style={{ backgroundColor: "#c89343", color: "white" }}
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "Sending..." : "Send Message"}
-                      <Send className="w-5 h-5" />
-                    </Button>
-                  </div>
-                  {submitStatus === "success" && (
-                    <p className="text-green-600 text-center mt-4">
-                      Message sent successfully! We'll get back to you soon.
-                    </p>
-                  )}
-                  {submitStatus === "error" && (
-                    <p className="text-red-600 text-center mt-4">
-                      Failed to send message. Please try again later.
-                    </p>
-                  )}
-                </form>
-              </div>
+        <div className="py-4 md:py-10 px-4 md:px-6 bg-[#f5e9db]">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8">
+            {/* Form on the Left */}
+            <div className="w-full md:w-1/2">
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center md:text-left" style={{ color: "#67322C" }}>
+                Get in Touch
+              </h2>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium" style={{ color: "#67322C" }}>
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="mt-1 w-full p-3 bg-transparent border-0 border-b-2 border-[#8B5A2B]/50 focus:border-[#c89343] focus:ring-0 transition-all duration-200"
+                    placeholder="Your Name"
+                  />
+                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium" style={{ color: "#67322C" }}>
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="mt-1 w-full p-3 bg-transparent border-0 border-b-2 border-[#8B5A2B]/50 focus:border-[#c89343] focus:ring-0 transition-all duration-200"
+                    placeholder="Your Email"
+                  />
+                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                </div>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium" style={{ color: "#67322C" }}>
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className="mt-1 w-full p-3 bg-transparent border-0 border-b-2 border-[#8B5A2B]/50 focus:border-[#c89343] focus:ring-0 transition-all duration-200"
+                    placeholder="Subject of Your Message"
+                  />
+                  {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium" style={{ color: "#67322C" }}>
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={5}
+                    className="mt-1 w-full p-3 bg-transparent border-0 border-b-2 border-[#8B5A2B]/50 focus:border-[#c89343] focus:ring-0 transition-all duration-200"
+                    placeholder="Your Message"
+                  />
+                  {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+                </div>
+                <div className="flex justify-center md:justify-start">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="px-8 py-3 text-base font-medium shadow-md flex items-center gap-2 cursor-pointer transform transition-all duration-200 hover:scale-105"
+                    style={{ backgroundColor: "#c89343", color: "white" }}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                    <Send className="w-5 h-5" />
+                  </Button>
+                </div>
+                {submitStatus === "success" && (
+                  <p className="text-green-600 text-center md:text-left mt-4">
+                    Message sent successfully! We'll get back to you soon.
+                  </p>
+                )}
+                {submitStatus === "error" && (
+                  <p className="text-red-600 text-center md:text-left mt-4">
+                    Failed to send message. Please try again later.
+                  </p>
+                )}
+              </form>
             </div>
-            <img
-              src="/mirrorfinal.png"
-              alt="Decorative Mirror"
-              className="w-64 h-64 md:w-96 md:h-96 object-contain hidden md:block -mr-16"
-            />
+            {/* Images on the Right */}
+            <div className="pt-7 w-full md:w-1/2 flex flex-row gap-2 md:ml-8">
+              <img
+                src="cafedrink.webp"
+                alt="Drink Image"
+                className="w-1/2 h-[570px] object-contain rounded-lg"
+              />
+              <img
+                src="cafefood.webp"
+                alt="Food Image"
+                className="w-1/2 h-[570px] object-contain rounded-lg"
+              />
+            </div>
           </div>
         </div>
 
         {/* Contact Info and Image Section */}
-        <div className="py-4 md:py-6 px-4 md:px-6 bg-[#f5e9db]">
+        <div className="py-2 md:py-6 px-4 md:px-6 bg-[#f5e9db]">
           <div className="max-w-6xl mx-auto">
             <h2
-              className="text-2xl md:text-3xl font-bold text-center"
+              className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-8"
               style={{ color: "#67322C" }}
             >
               Contact Information
