@@ -194,80 +194,104 @@ export default function CafeCucinaLanding() {
           </div>
         </div>
 
-           <div className="py-12 md:py-16 px-4 md:px-6 bg-white">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-              {/* CEO Image */}
-              <div className="md:w-1/2 flex justify-center md:order-1">
-                <div className="relative w-full max-w-sm">
-                  <div
-                    className="relative w-full h-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl border-4"
-                    style={{ borderColor: "#c89343" }}
-                  >
-                    <Image src="/cafeteam.webp" alt="CEO" fill className="object-cover" priority />
-                  </div>
-                  {/* Decorative accent */}
-                  <div
-                    className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full opacity-20"
-                    style={{ backgroundColor: "#c89343" }}
-                  ></div>
-                </div>
-              </div>
+           <div className="bg-white px-4 py-10 sm:py-12 md:px-6 md:py-16">
+  <div className="mx-auto max-w-6xl">
+    <div className="flex flex-col items-center gap-10 md:flex-row md:gap-12">
 
-              {/* CEO Message Content */}
-              <div className="md:w-1/2 md:order-2">
-                <div className="mb-6">
-                  <p
-                    className="text-sm md:text-base font-semibold uppercase tracking-wider"
-                    style={{ color: "#c89343" }}
-                  >
-                    Message From Our CEO
-                  </p>
-                  <h2 className="text-2xl md:text-4xl font-bold mt-2 mb-6" style={{ color: "#67322C" }}>
-                    A Vision Born From Passion
-                  </h2>
-                </div>
-
-                <div className="space-y-4 md:space-y-5">
-                  <p className="text-base md:text-lg leading-relaxed text-justify" style={{ color: "#95541E" }}>
-                    When we opened the doors of Café Cucina, our dream was simple yet profound—to create a sanctuary
-                    where every guest feels the warmth of Italian hospitality and the soul of genuine culinary
-                    craftsmanship.
-                  </p>
-
-                  <p className="text-base md:text-lg leading-relaxed text-justify" style={{ color: "#95541E" }}>
-                    Every espresso we brew, every dish we prepare, and every moment we share with you is a reflection of
-                    our commitment to excellence. We believe that great coffee and food are not just about taste—they
-                    are about creating memories, building connections, and celebrating the art of living well.
-                  </p>
-
-                  <p className="text-base md:text-lg leading-relaxed text-justify" style={{ color: "#95541E" }}>
-                    Our partnerships with healthcare facilities like Nagarik Community Teaching Hospital and Hams
-                    Hospital reflect our dedication to serving the community. Whether it's a daily café experience or
-                    catering for important events, we pour our heart into everything we do.
-                  </p>
-
-                  <p
-                    className="text-base md:text-lg leading-relaxed text-justify font-medium"
-                    style={{ color: "#c89343" }}
-                  >
-                    Thank you for being part of our journey. Here's to many more moments of warmth, flavor, and
-                    connection at Café Cucina.
-                  </p>
-                </div>
-
-                <div className="mt-8 pt-6 border-t" style={{ borderColor: "#ebb16d" }}>
-                  <p className="text-lg font-bold" style={{ color: "#67322C" }}>
-                    Warm regards,
-                  </p>
-                  <p className="text-base md:text-lg font-semibold mt-2" style={{ color: "#95541E" }}>
-                    Café Cucina Team
-                  </p>
-                </div>
-              </div>
-            </div>
+      {/* CEO Image */}
+      <div className="flex w-full justify-center md:w-1/2 md:order-1">
+        <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md">
+          <div
+            className="relative h-[380px] sm:h-[420px] md:h-[500px] w-full overflow-hidden rounded-2xl border-4 shadow-2xl"
+            style={{ borderColor: "#c89343" }}
+          >
+            <Image
+              src="/cafeteam.webp"
+              alt="Café Cucina Team"
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
+
+          {/* Decorative accent */}
+          <div
+            className="absolute -bottom-3 -right-3 h-16 w-16 sm:h-20 sm:w-20 rounded-full opacity-20"
+            style={{ backgroundColor: "#c89343" }}
+          />
         </div>
+      </div>
+
+      {/* CEO Message Content */}
+      <div className="w-full md:w-1/2 md:order-2">
+        <div className="mb-6 text-center md:text-left">
+          <p
+            className="text-xs sm:text-sm font-semibold uppercase tracking-wider"
+            style={{ color: "#c89343" }}
+          >
+            Message From Our CEO
+          </p>
+
+          <h2
+            className="mt-2 mb-6 text-2xl sm:text-3xl md:text-4xl font-bold"
+            style={{ color: "#67322C" }}
+          >
+            A Vision Born From Passion
+          </h2>
+        </div>
+
+        <div className="space-y-4 sm:space-y-5">
+          <p
+            className="text-sm sm:text-base md:text-lg leading-relaxed text-justify"
+            style={{ color: "#95541E" }}
+          >
+            When we opened the doors of Café Cucina, our dream was simple yet profound—to create a sanctuary
+            where every guest feels the warmth of Italian hospitality and the soul of genuine culinary
+            craftsmanship.
+          </p>
+
+          <p
+            className="text-sm sm:text-base md:text-lg leading-relaxed text-justify"
+            style={{ color: "#95541E" }}
+          >
+            Every espresso we brew, every dish we prepare, and every moment we share with you is a reflection of
+            our commitment to excellence. We believe that great coffee and food are not just about taste—they
+            are about creating memories, building connections, and celebrating the art of living well.
+          </p>
+
+          <p
+            className="text-sm sm:text-base md:text-lg leading-relaxed text-justify"
+            style={{ color: "#95541E" }}
+          >
+            Our partnerships with healthcare facilities like Nagarik Community Teaching Hospital and Hams
+            Hospital reflect our dedication to serving the community. Whether it's a daily café experience or
+            catering for important events, we pour our heart into everything we do.
+          </p>
+
+          <p
+            className="text-sm sm:text-base md:text-lg font-medium leading-relaxed text-justify"
+            style={{ color: "#c89343" }}
+          >
+            Thank you for being part of our journey. Here's to many more moments of warmth, flavor, and
+            connection at Café Cucina.
+          </p>
+        </div>
+
+        <div className="mt-8 border-t pt-6" style={{ borderColor: "#ebb16d" }}>
+          <p className="text-base sm:text-lg font-bold" style={{ color: "#67322C" }}>
+            Warm regards,
+          </p>
+          <p className="mt-2 text-sm sm:text-base md:text-lg font-semibold" style={{ color: "#95541E" }}>
+            Café Cucina Team
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
         {/* Handcrafted Curations Section */}
         <div className="py-12 md:py-16 px-4 md:px-6 bg-white">
