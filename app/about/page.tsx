@@ -55,7 +55,7 @@ const staffMembers = [
   {
     name: "Manisha Sunuwar",
     role: "Supervisor - HAMS, Dhumbarahi",
-    image: "/hosana.jpg",
+    image: "/manisha.jpg",
     details: [
       "Working with Cafe e' Cucina from 2022.",
       "Started as wait staff and now supervises the HAMS Cafe e' Cucina Branch, Dhumbarahi.",
