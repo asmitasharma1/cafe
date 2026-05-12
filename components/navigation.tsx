@@ -51,7 +51,7 @@ export default function Navigation() {
           </Link>
         </div>
 
-        <div className="hidden lg:flex items-center space-x-8 xl:space-x-12 font-baskerville">
+        <div className="hidden lg:flex items-center space-x-5 xl:space-x-8 font-baskerville">
           <Link
             href="/"
             className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
@@ -75,6 +75,18 @@ export default function Navigation() {
             className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
           >
             Contact Us
+          </Link>
+          <Link
+            href="/career"
+            className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
+          >
+            Career
+          </Link>
+          <Link
+            href="/franchise"
+            className={`${desktopTextColor} ${desktopHoverColor} text-lg font-medium cursor-pointer hover:underline transition-colors`}
+          >
+            Franchise
           </Link>
           <a
             href="/gallery"
@@ -147,6 +159,18 @@ export default function Navigation() {
               className="text-[#4A231F] text-lg font-medium cursor-pointer hover:underline hover:text-[#67322C] transition-colors"
             >
               Contact Us
+            </Link>
+            <Link
+              href="/career"
+              className="text-[#4A231F] text-lg font-medium cursor-pointer hover:underline hover:text-[#67322C] transition-colors"
+            >
+              Career
+            </Link>
+            <Link
+              href="/franchise"
+              className="text-[#4A231F] text-lg font-medium cursor-pointer hover:underline hover:text-[#67322C] transition-colors"
+            >
+              Franchise
             </Link>
             <a
               href="/gallery"

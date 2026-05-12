@@ -16,6 +16,56 @@ const libreFranklin = Libre_Franklin({
   weight: ["300", "400", "500", "600"],
 })
 
+const staffMembers = [
+  {
+    name: "Karan Basnet",
+    role: "Chef",
+    image: "/karan.jpg",
+    details: [
+      "Working together since 2017 at Coffee Pasal, Dhobighat.",
+      "Continuously working at Cafe e' Cucina since its establishment in August 2021.",
+      "Permanent address: Bitadi, Ramechhap.",
+      "Temporary address: Kapan, Kathmandu.",
+      "Age: 25 years.",
+    ],
+  },
+  {
+    name: "Saraswoti Khati",
+    role: "Supervisor",
+    image: "/sarswoti.jpg",
+    details: [
+      "Working together since 2024 at Coffee Pasal, Dhobighat.",
+      "Continuously working with Cafe e' Cucina from August 2021.",
+      "Permanent address: Kchhyawati, Dolakha.",
+      "Temporary address: Sanagaun, Lalitpur.",
+      "Age: 30 years.",
+    ],
+  },
+  {
+    name: "Hosanna Limbu",
+    role: "Barista",
+    image: "/hosana.jpg",
+    details: [
+      "Working with Cafe e' Cucina from August 2021.",
+      "Permanent address: Kummayak, Panchthar.",
+      "Temporary address: Harisiddhi, Lalitpur.",
+      "Age: 26 years.",
+    ],
+  },
+  {
+    name: "Manisha Sunuwar",
+    role: "Supervisor - HAMS, Dhumbarahi",
+    image: "/hosana.jpg",
+    details: [
+      "Working with Cafe e' Cucina from 2022.",
+      "Started as wait staff and now supervises the HAMS Cafe e' Cucina Branch, Dhumbarahi.",
+      "Permanent address: Jiri, Dolakha.",
+      "Temporary address: Kapan, Kathmandu.",
+      "Age: 24 years.",
+    ],
+  },
+]
+
 export default function AboutPage() {
   const [isVisible, setIsVisible] = useState(false)
 
@@ -141,7 +191,7 @@ export default function AboutPage() {
                     style={{ color: "#95541E" }}
                   >
                     As a small, independent cafe chain under Basil Hospitality’s trusted legacy, we operate with
-                    big-hearted values—good food, good coffee, and genuine community spirit. Our cafes at Hems Hospital
+                    big-hearted values—good food, good coffee, and genuine community spirit. Our cafes at HAMS Hospital
                     and Nagarik Hospital serve as welcoming havens for patients, visitors, and staff, offering a taste
                     of warmth and connection through every dish and cup.
                   </p>
@@ -250,6 +300,87 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* Our Team Section */}
+        <div className="py-16 md:py-24 px-4 md:px-6 bg-[#f5f0e6]">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2
+                className={`text-3xl md:text-4xl font-light mb-4 ${libreBaskerville.className}`}
+                style={{ color: "#c89343" }}
+              >
+                Our Chef & Team
+              </h2>
+              <p
+                className={`text-base md:text-lg leading-relaxed ${libreFranklin.className}`}
+                style={{ color: "#95541E" }}
+              >
+                Meet the dedicated people who have helped shape Cafe e' Cucina from Coffee Pasal to our growing cafe
+                branches, including the HAMS Cafe e' Cucina Branch at Dhumbarahi.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+              {staffMembers.map((member) => (
+                <div
+                  key={member.name}
+                  className="bg-white rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="h-72 overflow-hidden bg-[#faf7f2]">
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="p-6">
+                    <h3
+                      className={`text-xl font-light mb-1 ${libreBaskerville.className}`}
+                      style={{ color: "#c89343" }}
+                    >
+                      {member.name}
+                    </h3>
+                    <p
+                      className={`text-sm font-semibold mb-4 uppercase tracking-wide ${libreFranklin.className}`}
+                      style={{ color: "#a0622c" }}
+                    >
+                      {member.role}
+                    </p>
+                    <ul className="space-y-2">
+                      {member.details.map((detail) => (
+                        <li
+                          key={detail}
+                          className={`text-sm leading-relaxed ${libreFranklin.className}`}
+                          style={{ color: "#95541E" }}
+                        >
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
+              <div>
+                <h3
+                  className={`text-2xl md:text-3xl font-light mb-4 ${libreBaskerville.className}`}
+                  style={{ color: "#c89343" }}
+                >
+                  HAMS Cafe e' Cucina Branch, Dhumbarahi
+                </h3>
+                <p
+                  className={`text-base md:text-lg leading-relaxed text-justify ${libreFranklin.className}`}
+                  style={{ color: "#95541E" }}
+                >
+                  Our HAMS branch at Dhumbarahi is an important part of the Cafe e' Cucina journey, serving hospital
+                  guests, patients, visitors, and staff with the same care, food quality, and coffee culture that define
+                  our team.
+                </p>
+              </div>
+              <div className="h-72 md:h-96 overflow-hidden rounded-lg shadow-lg">
+                <img src="/interior.webp" alt="HAMS Cafe e' Cucina Branch" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Our Projects & Partnerships Section */}
         <div className="py-16 md:py-24 px-4 md:px-6 bg-white">
           <div className="max-w-7xl mx-auto">
@@ -301,7 +432,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Hams Hospital */}
+              {/* HAMS Hospital */}
               <div
                 className="p-8 rounded-lg shadow-md border-l-4 transition-transform duration-300 hover:shadow-lg"
                 style={{ borderColor: "#c89343", backgroundColor: "#faf7f2" }}
@@ -310,7 +441,7 @@ export default function AboutPage() {
                   className={`text-xl md:text-2xl font-light mb-3 ${libreBaskerville.className}`}
                   style={{ color: "#c89343" }}
                 >
-                  Hams Hospital
+                  HAMS Hospital
                 </h3>
                 <p
                   className={`text-sm font-semibold mb-4 uppercase tracking-wide ${libreFranklin.className}`}
@@ -322,7 +453,7 @@ export default function AboutPage() {
                   className={`text-base leading-relaxed mb-4 text-justify ${libreFranklin.className}`}
                   style={{ color: "#95541E" }}
                 >
-                  Hams Hospital's new development represents an exciting evolution for Cafe Cucina. As their modern
+                  HAMS Hospital's new development represents an exciting evolution for Cafe Cucina. As their modern
                   healthcare facility takes shape, we're designing a comprehensive food service solution featuring a
                   3D-designed cafe, canteen, and restaurant space. This state-of-the-art facility will serve patients,
                   families, and hospital staff with elevated hospitality. Our vision extends beyond traditional hospital
@@ -366,7 +497,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Hawawe - Coffee Server */}
+              {/* Huawei - Coffee Server */}
               <div
                 className="p-8 rounded-lg shadow-md border-l-4 transition-transform duration-300 hover:shadow-lg"
                 style={{ borderColor: "#c89343", backgroundColor: "#faf7f2" }}
@@ -375,7 +506,7 @@ export default function AboutPage() {
                   className={`text-xl md:text-2xl font-light mb-3 ${libreBaskerville.className}`}
                   style={{ color: "#c89343" }}
                 >
-                  Hawawe - Coffee Excellence
+                  Huawei - Coffee Excellence
                 </h3>
                 <p
                   className={`text-sm font-semibold mb-4 uppercase tracking-wide ${libreFranklin.className}`}
@@ -387,7 +518,7 @@ export default function AboutPage() {
                   className={`text-base leading-relaxed mb-4 text-justify ${libreFranklin.className}`}
                   style={{ color: "#95541E" }}
                 >
-                  Coffee is our passion, and Hawawe embodies that commitment to excellence. Our partnership with Hawawe
+                  Coffee is our passion, and Huawei embodies that commitment to excellence. Our partnership with Huawei
                   allows us to serve the finest, most ethically sourced coffee to our patrons. Every cup reflects years
                   of expertise in selecting, roasting, and brewing beans that deliver the perfect balance of flavor and
                   aroma. This collaboration ensures that whether you're in our cafe at a hospital or enjoying Lunch Box,

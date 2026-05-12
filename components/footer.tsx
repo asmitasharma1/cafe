@@ -40,6 +40,16 @@ export default function Footer() {
                   Contact Us
                 </Link>
               </li>
+              <li>
+                <Link href="/career" className="hover:underline cursor-pointer">
+                  Career with Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/franchise" className="hover:underline cursor-pointer">
+                  Franchise
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -56,6 +66,16 @@ export default function Footer() {
                 <Link href="/menu" className="hover:underline cursor-pointer">
                   Our Menu
                 </Link>
+              </li>
+              <li>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=caferacucina%40gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline cursor-pointer"
+                >
+                  Email Us
+                </a>
               </li>
             </ul>
           </div>

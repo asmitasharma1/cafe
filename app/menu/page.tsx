@@ -6,7 +6,7 @@ import Footer from "@/components/footer";
 import Image from "next/image";
 import styles from "./MenuPage.module.css";
 import { useState, useEffect, useCallback } from "react";
-import { ArrowUp, Download } from "lucide-react";
+import { ArrowUp, Download, Mail, MessageCircle } from "lucide-react";
 import jsPDF from "jspdf";
 import SocialMediaSidebar from "@/components/social-media-sidebar";
 import { useFavorites } from "@/contexts/favourites-context";
@@ -611,21 +611,36 @@ export default function MenuPage() {
                     Ready to Order?
                   </h3>
                   <p className="text-lg mb-6" style={{ color: "#95541E" }}>
-                    Place your order now via WhatsApp and enjoy Café Cucina's authentic flavors!
+                    Place your order now via WhatsApp or email and enjoy Café Cucina's authentic flavors!
                   </p>
-                  <a
-                    href="https://wa.me/9779861601155?text=Hello%20I%20would%20like%20to%20place%20an%20order"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button
-                      size="lg"
-                      className="px-8 py-4 text-lg font-medium shadow-md hover:scale-105 cursor-pointer transition-all duration-300"
-                      style={{ backgroundColor: "#c89343", color: "white" }}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a
+                      href="https://wa.me/9779861601155?text=Hello%20I%20would%20like%20to%20place%20an%20order"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      Order Now
-                    </Button>
-                  </a>
+                      <Button
+                        size="lg"
+                        className="px-8 py-4 text-lg font-medium shadow-md hover:scale-105 cursor-pointer transition-all duration-300 gap-2"
+                        style={{ backgroundColor: "#c89343", color: "white" }}
+                      >
+                        <MessageCircle className="h-5 w-5" /> Order on WhatsApp
+                      </Button>
+                    </a>
+                    <a
+                      href="https://mail.google.com/mail/?view=cm&fs=1&to=caferacucina%40gmail.com&su=Cafe%20Cucina%20Order&body=Dear%20Cafe%20Cucina%20Team%2C%0A%0AI%20would%20like%20to%20place%20an%20order.%0A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0AORDER%20DETAILS%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A%0AName%3A%20%0APhone%3A%20%0AOrder%20Items%3A%20%0A%0A1.%20%0A2.%20%0A3.%20%0A%0APickup%20or%20Delivery%3A%20%0APreferred%20Time%3A%20%0ASpecial%20Instructions%3A%20%0A%0AThank%20you.%20Looking%20forward%20to%20enjoying%20Cafe%20Cucina."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        size="lg"
+                        className="px-8 py-4 text-lg font-medium shadow-md hover:scale-105 cursor-pointer transition-all duration-300 gap-2"
+                        style={{ backgroundColor: "#67322C", color: "white" }}
+                      >
+                        <Mail className="h-5 w-5" /> Order by Email
+                      </Button>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

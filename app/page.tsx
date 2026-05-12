@@ -1,6 +1,8 @@
 
 "use client"
 
+declare module "aos/dist/aos.css"
+
 import { MapPin, Clock, Phone, ArrowUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Navigation from "@/components/navigation"
